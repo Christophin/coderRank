@@ -11,8 +11,13 @@ function getRepoStats (event)  {
   $.ajax({
     url: `${BASE_URL}/repos/${user}/${repo}/stats/contributors`,
     dataType: "json",
-    sucess: function (data) {
-      console.log(data);
+    success: function (data, status, request) {
+      if (request.status === 202) {
+        //tell user to wait
+        //reschedule request on timeout
+      } else {
+        console.log(data);
+      };
     }
   });
 }

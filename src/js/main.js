@@ -1,4 +1,5 @@
 import $ from 'jquery'
+import GH_TOKEN from './token.js'
 
 var BASE_URL = "https://api.github.com"
 var retryCount = 0;
@@ -25,6 +26,9 @@ function fetchData()  {
   $.ajax({
     url: `${BASE_URL}/repos/${user}/${repo}/stats/contributors`,
     dataType: "json",
+    headers: {
+      "Authorization": `token ${GH_TOKEN}`
+    },
     success: displayStats
   });
 }
